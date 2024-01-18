@@ -1,0 +1,8 @@
+torch
+torchvision
+mlconfig==0.1.0
+timm
+scipy
+argparse
+scikit-learn
+tensorboard

@@ -1,0 +1,41 @@
+num_classes: 1000
+epochs: 90
+log_frequency: 50
+warmup_epochs: 0
+blr: 0.1
+lr: 0.1
+min_lr: 0.0
+weight_decay: 0
+sync_bn: true
+lr_schedule: cosine
+amp: false
+criterion:
+  name: CrossEntropyLoss
+model:
+  name: ResNet
+  block_type: bottleneck
+  num_blocks:
+  - 3
+  - 4
+  - 6
+  - 3
+  c_k: 7
+  num_classes: 1000
+optimizer:
+  name: LARS
+  lr: $lr
+  weight_decay: 0.0
+  momentum: 0.9
+dataset:
+  name: DatasetGenerator
+  train_bs: 1024
+  eval_bs: 1024
+  n_workers: 8
+  train_d_type: ImageFolder
+  test_d_type: ImageFolder
+  train_tf_op: ImageNetLinearProb
+  test_tf_op: ImageNetLinearProb
+  train_path: /data/scratch/datasets/ImageNet/ILSVRC/Data/CLS-LOC
+  test_path: /data/scratch/datasets/ImageNet/ILSVRC/Data/CLS-LOC
+  collate_fn:
+    name: None

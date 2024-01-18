@@ -1,0 +1,54 @@
+num_classes: 1000
+epochs: 100
+log_frequency: 100
+warmup_epochs: 10
+blr: 0.075
+lr: 0.075
+blr_scale: sqrt
+min_lr: 0.0
+sync_bn: true
+lr_schedule: cosine
+snapshot_epoch: 25
+eval_every_epoch: 1
+full_set_lid_eval: false
+amp: true
+weight_decay: 1.0e-06
+criterion:
+  name: NTXentLIDReg
+  gather_distributed: true
+  alpha: 0.01
+  temperature: 0.1
+  est_type: mom
+  lid_type: f
+  reg_type: l1
+  warmup_epochs: 10
+  k: 128
+model:
+  name: ResNetSimCLR
+  block_type: bottleneck
+  num_blocks:
+  - 3
+  - 4
+  - 6
+  - 3
+  c_k: 7
+  projection_dim: 128
+  get_features: true
+optimizer:
+  name: LARS
+  lr: $lr
+  weight_decay: 1.0e-06
+  momentum: 0.9
+dataset:
+  name: DatasetGenerator
+  train_bs: 512
+  eval_bs: 512
+  n_workers: 8
+  train_d_type: ImageFolder
+  test_d_type: ImageFolder
+  train_tf_op: SimCLR
+  test_tf_op: ImageNet
+  train_path: /data/scratch/datasets/ImageNet/ILSVRC/Data/CLS-LOC
+  test_path: /data/scratch/datasets/ImageNet/ILSVRC/Data/CLS-LOC
+  collate_fn:
+    name: None

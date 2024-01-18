@@ -1,0 +1,42 @@
+num_classes: 196
+epochs: 30
+log_frequency: 10
+warmup_epochs: 0
+blr: 0.01
+lr: 0.01
+min_lr: 1.0e-06
+weight_decay: 0.0005
+sync_bn: true
+lr_schedule: cosine
+amp: false
+criterion:
+  name: CrossEntropyLoss
+model:
+  name: ResNet
+  block_type: bottleneck
+  num_blocks:
+  - 3
+  - 4
+  - 6
+  - 3
+  c_k: 7
+  num_classes: $num_classes
+optimizer:
+  name: SGD
+  lr: $lr
+  weight_decay: 0.0005
+  momentum: 0.9
+  nesterov: True
+dataset:
+  name: DatasetGenerator
+  train_bs: 64
+  eval_bs: 64
+  n_workers: 8
+  train_d_type: DTD
+  test_d_type: DTD
+  train_tf_op: ImageNetLinearProb
+  test_tf_op: ImageNetLinearProb
+  train_path: /data/projects/punim0784/datasets
+  test_path: /data/projects/punim0784/datasets
+  collate_fn:
+    name: None

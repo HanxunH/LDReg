@@ -27,7 +27,7 @@ def lid_mom_est(data, reference, k, get_idx=False,
 # NOTE: features and reference should be in the same dimension.
 
 lids = lid_mom_est(data=features, reference=reference.detach(), k=k)
-reg_loss = - torch.log(torch.abs(lids))  # Eq (1) of the paper. 
+reg_loss = - torch.log(lids)  # Eq (1) of the paper. 
         
 ```
 

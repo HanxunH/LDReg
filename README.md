@@ -1,6 +1,6 @@
 # LDReg: Local Dimensionality Regularized Self-Supervised Learning
 
-Code for ICLR2024 paper ["LDReg: Local Dimensionality Regularized Self-Supervised Learning"](https://openreview.net/forum?id=oZyAqjAjJW)
+Code for ICLR2024 paper ["LDReg: Local Dimensionality Regularized Self-Supervised Learning"](https://arxiv.org/abs/2401.10474)
 
 ---
 ## LDReg

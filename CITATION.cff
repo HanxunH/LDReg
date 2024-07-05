@@ -45,6 +45,5 @@ preferred-citation:
     - family-names: "Bailey"
       given-names: "James"
       orcid: "https://orcid.org/0000-0002-3769-3811"
-  conference:
-    name: "ICLR"
+  collection-title: "ICLR"
   year: 2024
